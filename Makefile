@@ -1,15 +1,8 @@
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
+all: local
+	$(CXX) -oHelloWorld.exe *.o -L/c/boost_1_49_0/stage/lib -lboost_regex-mgw47-mt-1_49 -static-libgcc -static-libstdc++ 
 
-OBJS =		HelloWorld.o
-
-LIBS =
-
-TARGET =	HelloWorld.exe
-
-$(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) -static-libgcc -static-libstdc++
-
-all:	$(TARGET)
+local: *.cpp
+	$(CXX) -c $^ -I/c/boost_1_49_0
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f *.o HelloWorld.exe
